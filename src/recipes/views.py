@@ -1,6 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Recipe
 
-# Create your views here.
-def index(request):
-    return HttpResponse("Hey! You're at the RECIPES home!")
+
+def home(request):
+    context = {
+        'recipes': Recipe.objects.all()
+    }
+    return render(request, 'recipes/home.html', context)
+
+def about(request):
+    return render(request, 'recipes/about.html', {'title': 'About No Nonsense Recipes'})
